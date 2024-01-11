@@ -1,0 +1,465 @@
+@font-face {
+    /*font-family: Lato-Regular;*/
+    src: url('fonts/Lato/Lato-Regular.ttf');
+}
+
+@font-face {
+   /* font-family: 'OswaldRegular';*/
+    src: url('fonts/Oswald/Oswald-Regular.ttf');
+}
+
+
+.root{
+   -fx-background: rgb(36, 46, 64);
+	
+}
+
+.tooltip{
+	-fx-background-color: #E3D962;
+	-fx-background-radius: 1;
+	-fx-border-radius: 1;
+	-fx-text-fill: rgb(36, 46, 64);
+	-fx-font-family: 'Lato';
+	-fx-font-size: 12px;
+	-fx-padding: 16px;
+	-fx-letter-spacing: 1px;
+}
+
+
+/* Gui: Main Navi*/
+/*--------------------------------------*/
+
+.mainnavi .project{
+	-fx-background-color: rgb(112,112,112);
+	-fx-background-radius: 3 3 0 0;
+}
+
+.mainnavi .timelines{
+	-fx-background-color: rgb(112,130,130,0.5);
+	-fx-background-radius: 0 0 3 3;
+}
+
+.mainnavi .video{
+	-fx-background-color: rgb(112,130,130,0.5);
+	-fx-background-radius: 3;
+	-fx-border-radius: 3;
+}
+
+
+
+.labelnavi{
+	-fx-text-fill: rgb(255,255,255, 0.5);
+	-fx-font-family: 'Lato';
+	-fx-font-size: 12px;
+}
+
+.button{
+	-fx-background-color: rgb(36,46,64);
+	-fx-border-radius: 0px;	
+	-fx-border: none;
+	-fx-font-family: 'Oswald';
+	-fx-font-size: 9px;
+}
+
+.main-navi-record-title{
+	-fx-fill: white;
+	-fx-font-family: 'Lato';
+	-fx-font-size: 12px;
+}
+.mainnavi .main-navi-info-label{
+	-fx-fill: white;
+	-fx-font-family: 'Lato';
+	-fx-font-size: 12px;
+}
+
+.main-navi-label{
+	-fx-font-family: 'Lato';
+	-fx-font-size: 12px;
+	/*-fx-text-fill: rgb(112,112,112);*/
+}
+
+.main-navi-button{
+	-fx-width: 31px;
+	-fx-height: 31px;
+	-fx-border-width: 0;
+	-fx-border-color: rgba(230,230,230, 1);
+	-fx-border-radius: 2px;
+	-fx-background-color: rgb(36,46,64);
+	-fx-background-radius: 3;
+	-fx-text-fill: rgb(255,255,255);	
+	-fx-font-size: 9px;
+}
+
+
+.main-navi-button:hover{
+	-fx-background-color: rgb(112,112,112);
+	-fx-text-fill: rgb(255,255,255);
+	-fx-cursor: hand;
+	
+}
+
+.timeline-main{
+	-fx-padding: 8px 8px 8px 8px;
+	/*-fx-background-color: rgba(0,255,0,0.5);*/
+}
+
+.gui {
+    /*-fx-background-color: rgba(255,0,0,0.5);*/
+}
+
+.visual{
+	/*-fx-background-color: rgba(0,0,255,0.5);*/
+	-fx-border-color: rgb(0,200,200);
+}
+
+/* Table */
+/*--------------------------------------*/
+
+
+.tablecontainer{
+	-fx-background-radius: 3 3 0 0;
+}
+
+.table-view{
+	-fx-background-color: rgba(255,255,255,0.1);
+	-fx-border-color: rgba(255,255,255,0.1);
+	-fx-border-radius: 3 3 0 0;
+	-fx-font-family: 'Lato', Verdana;
+	-fx-font-size: 12px;
+	-fx-letter-spacing: 3px;
+	-fx-background-radius: 3 3 0 0;
+	}
+
+.table-view .column-header .label{
+   -fx-text-fill: black; 
+   -fx-alignment: CENTER;
+   -fx-text-fill: rgb(112,112,112);
+}
+
+.table-view .column-header-background{
+    -fx-background-color: rgba(255,255,255,0.1);
+}
+
+.table-view .column-header, .table-view .filler{
+   -fx-background-color: rgba(255,255,255,1);
+}
+
+.table-view .column{
+	-fx-border: none;
+	
+}
+
+
+.table-view .cell{
+
+	-fx-text-fill: rgba(255,255,255,0.8);
+	-fx-alignment: CENTER;
+-fx-table-cell-border-color:transparent;
+	}
+
+
+.table-row-cell:even{
+	-fx-background-color:rgba(255,255,255,0.05);
+	-fx-text-fill: white;
+	-fx-alignment: CENTER;
+}
+
+.table-row-cell:odd{
+	-fx-background-color:rgba(255,255,255,0.1);
+	-fx-text-fill: white;
+	-fx-alignment: CENTER;
+}
+
+.MenuPullDown  {
+    -fx-font-size: 12px;
+    -fx-font-family: 'Lato';
+    -fx-padding: 0;
+ 	-fx-background-color: rgb(255,255,255,1);
+ 	-fx-background-radius: 0;
+ 	-fx-border-width: 1;
+ 	-fx-border-color: rgb(112,112,112);
+}
+
+.MenuPullDown  .label {
+	-fx-padding: 2 0 2 4;
+}
+
+.MenuPullDown  > .arrow-button {
+    -fx-padding: 8;
+    -fx-background-color: rgb(112,112,112);
+}
+
+.MenuPullDown  > .arrow-button > .arrow {
+    /*-fx-shape: "M 0 -3.5 v 7 l 4 -3.5 z";*/
+    -fx-rotate: 90;
+    -fx-shape: "M 11.11690044403076 9.5 L 0.8831004500389099 9.5 L 6.000000476837158 0.971833348274231 L 11.11690044403076 9.5 Z";
+    -fx-background-color: white;
+}
+
+.MenuPullDown .menu-item{
+	-fx-font-size: 12px;
+    -fx-font-family: 'Lato';
+	-fx-border-color: rgb(112,112,112);
+	-fx-border-width: 0 0 1 0;
+	-fx-padding: 2 8 2 4;
+	
+}
+
+.MenuPullDown .menu-item:hover{
+	-fx-background-color: rgb(112,112,112);
+}
+	
+.MenuPullDown .context-menu {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+
+/* Temporal Display*/
+/*--------------------------------------*/
+.temporal-display-container{
+	-fx-background-color: rgb(112,130,130,0.5);
+	-fx-background-radius: 0 0 3 3;	
+	-fx-padding : 8px 8px 8px 0px;
+}
+
+.temporal-display-block{
+	-fx-border: 0 1 0 0;	
+	-fx-border-width: 0 1 0 0;
+ 	-fx-border-color: rgb(36, 46, 64);
+	-fx-padding : 0 0 0 8px;
+	
+}
+
+.temporal-display-label-block{
+	-fx-padding : 4px 0px 0px 8px;
+}
+
+.temporal-display-text{
+	-fx-text-fill: rgb(255,255,255);
+	-fx-font-size: 24px;
+    -fx-font-family: 'Oswald';
+}
+
+/* Spatial Visualizer*/
+/*--------------------------------------*/
+.spatialmaincontainer{
+	/*-fx-background-radius: 3 3 0 0;
+	-fx-background-color: rgba(255,255,255,0.1);
+	-fx-border-color: rgba(255,255,255,0.5);*/
+}
+
+.temporal-display-triangle-container{
+	-fx-background-radius: 3 3 0 0;
+	-fx-background-color: rgba(255,255,255,0.1);
+	-fx-border-color: rgba(255,255,255,0.1);
+	-fx-padding: 10 0 0 107px;
+}
+
+.checkboxes{
+	-fx-width: 10px;
+}
+
+.check-box > .box {
+    -fx-padding: 0px;
+}
+
+.check-box {
+	-fx-text-fill: rgb(255,255,255);
+	-fx-font-size: 12px;
+    -fx-font-family: 'Lato';
+}
+/* Main MenuBar*/
+/*--------------------------------------*/
+
+.menu-bar{
+	-fx-padding: 0 0 0 20;
+}
+.menu-bar .menu-button{
+	-fx-pref-width: 114px;
+  -fx-font-size: 12px;
+    -fx-font-family: 'Lato';
+}
+
+.menu-bar .menu-item {
+   -fx-pref-width: 229px;
+ }
+
+.menu-bar .menu-item > .label{
+  -fx-pref-width: 180px;
+  -fx-font-size: 12px;
+    -fx-font-family: 'Lato';
+ }
+ /*
+.menu-bar .menu-item .label{
+    -fx-font-size: 12px;
+    -fx-font-family: 'Lato';
+}
+*/
+
+/* timeline */
+/*--------------------------------------*/
+
+.timeline .sliderlabel {
+	-fx-font-size: 12px;
+    -fx-font-family: 'Lato';
+}
+
+.playbackmarker:hover {
+	-fx-cursor: h-resize;
+}
+
+.playbackmarker .label {
+	-fx-font-size: 10px;
+    -fx-font-family: 'Lato';
+}
+
+.marker:hover {
+	-fx-cursor: h-resize;
+}
+
+.marker .label {
+	-fx-font-size: 10px;
+    -fx-font-family: 'Lato';
+}
+
+.section .label{
+	-fx-font-size: 10px;
+    -fx-font-family: 'Lato';
+}
+
+.section .background:hover{
+	-fx-cursor: hand;
+}
+
+.section .grip:hover{
+	-fx-cursor: h-resize;
+}
+
+.buttonPanelRight .rbutton{
+	-fx-background-color: rgb(255,0,0);
+}
+
+.buttonPanelRight .rbutton:hover{
+	-fx-background-color: rgb(112,112,112);
+}
+
+
+.timeline .menu-item {
+   -fx-pref-width: 229px;
+ }
+
+.timeline .menu-item > .label{
+  -fx-pref-width: 180px;
+ }
+
+
+
+
+
+
+/* timeline scale*/
+/*--------------------------------------*/
+
+
+.scale .label{
+	-fx-font-size: 7px;
+    -fx-font-family: 'Lato';
+    -fx-text-fill: rgb(0,0,0);
+}
+
+/* slider*/
+/*--------------------------------------*/
+
+.slider .track {
+	-fx-background-radius: 0;
+	-fx-background-color : rgba(255,255,255,1);
+	-fx-border-width: 0;
+	-fx-pref-height:1;
+	-fx-pref-width: 90;
+}
+
+.slider .thumb {
+	-fx-background-radius: 0;
+	-fx-border-width: 1;
+	-fx-border-color: rgba(255,255,255,1);
+	-fx-background-color : rgba(112,112, 112,1);
+	-fx-pref-height: 10;
+    -fx-pref-width: 10;
+}
+
+.slider .thumb:hover{
+	-fx-background-color: rgba(255,255,255,1);	
+}
+
+/* scroll bar*/
+/*--------------------------------------*/
+
+.scroll-bar:vertical .increment-button ,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-padding :0.0 10.0 0.0 0.0;
+}
+
+.scroll-bar{
+	-fx-background-color :rgba(255,255,255,0);
+}
+
+ .scroll-bar .increment-arrow,
+ .scroll-bar .decrement-arrow{
+    -fx-shape : " ";    
+    -fx-padding :0.15em 0.0;
+}
+
+ .scroll-bar:vertical .increment-arrow,
+ .scroll-bar:vertical .decrement-arrow{
+    -fx-shape : " ";    
+    -fx-padding :0.0 0.15em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color : rgba(255,255,255,0.3);
+    -fx-background-insets : 2.0, 0.0, 0.0;
+    -fx-background-radius : 2.0em;
+}
+
+.scroll-bar:horizontal .thumb:hover,
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color : rgba(255,255,255,1);
+    -fx-background-insets : 2.0, 0.0, 0.0;
+    -fx-background-radius : 2.0em;
+}
+
+
+.spatialVisualizerGui {
+	-fx-background-radius: 3;
+}
+/*
+.spatialVisualizerGui .menu-item:focused, 
+.spatialVisualizerGui .menu-item:hover {
+    -fx-background-color: rgb(112,112,112); 
+}
+
+.menu-bar > .container > .menu-button:hover,
+.menu-bar > .container > .menu-button:focused,
+.menu-bar > .container > .menu-button:showing {
+
+}
+
+ .spatialVisualizerGui  .menu-item:focused .label, 
+  .spatialVisualizerGui .menu-item:hovered .label {
+    -fx-text-fill: rgb(255,255,255);
+}
+
+.spatialVisualizerGui .menu-button .label {
+ 	-fx-text-fill: rgb(112,112,112);
+ 	-fx-font-size: 12px;
+    -fx-font-family: Verdana;
+    -fx-padding: 0;
+ }
+
+ .context-menu {
+    -fx-background-insets: 0;
+} */
