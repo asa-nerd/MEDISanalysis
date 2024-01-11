@@ -26,7 +26,6 @@ public class Main extends Application{
 
         primaryStage.setTitle("MEDISanalysis 0.95");
         primaryStage.initStyle(StageStyle.DECORATED);
-
         Sample sample = new Sample();
         GUI gui = new GUI(primaryStage, sample);
         VBox root = gui.getLayout();
