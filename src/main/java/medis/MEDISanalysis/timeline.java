@@ -263,10 +263,12 @@ public class timeline {
 			File file = fileChooser.showSaveDialog(null);
 			
 		}});*/
-		
+
 		e2.setOnAction(new EventHandler<ActionEvent>() { public void handle(ActionEvent event) {
+
 		   PrinterJob job = PrinterJob.createPrinterJob();
            if(job != null){
+			   System.out.println("pdf");
         		job.showPrintDialog(Main.getPrimaryStage());
         		boolean printed = job.printPage(scrollContainer);
                 if (printed) {
@@ -281,7 +283,7 @@ public class timeline {
            PrinterJob job = PrinterJob.createPrinterJob();
            if(job != null){
         		job.showPrintDialog(Main.getPrimaryStage());
-                boolean printed = job.printPage(dataLayer	);
+                boolean printed = job.printPage(dataLayer);
                 if (printed) {
                     job.endJob();
                 }else{

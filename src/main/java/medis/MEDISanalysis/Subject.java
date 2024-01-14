@@ -31,7 +31,7 @@
 package medis.MEDISanalysis;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+
 import org.json.simple.*;
 import math.geom2d.Point2D;
 
@@ -116,7 +116,6 @@ public class Subject {
 		
 		subjectActivityAverage = subjectActivitySum/subjectActivityCount;
 		subjectActivityTotalAverage = subjectActivitySum / PointsList.size();
-		System.out.println(subjectActivityCount);
 	}
 	
 	public void updateData(int _begin, int _end) {
@@ -142,6 +141,13 @@ public class Subject {
 	
 	
 	// 1. General functions
+
+	public String getDataModel(){
+		return dataModel;
+	}
+	public long getDataDimensions(){
+		return dataDimensions;
+	}
 	public long getProjectlDatasetLength() {
 		return projectDataSetLength;
 	}

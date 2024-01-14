@@ -59,7 +59,7 @@ public class VisualizerSpatial {
 		mainContainer = new VBox();
 		controlsContainer = new HBox();
 		canvasContainer = new HBox();
-		
+
 		left = new VBox();
 		middle = new VBox();
 		right = new VBox();
@@ -125,9 +125,9 @@ public class VisualizerSpatial {
 		exportPdfButton.setPrefSize(31,31);
 		exportBitmapButton.setPrefSize(31,31);
 		exportJsonButton.setPrefSize(31,31);
-		exportPdfButton.setGraphic(new ImageView("file:gfx/icons/export-1.png"));
-		exportBitmapButton.setGraphic(new ImageView("file:gfx/icons/export-2.png"));
-		exportJsonButton.setGraphic(new ImageView("file:gfx/icons/export-3.png"));
+		exportPdfButton.setGraphic(new ImageView("icons/export-1.png"));
+		exportBitmapButton.setGraphic(new ImageView("icons/export-2.png"));
+		exportJsonButton.setGraphic(new ImageView("icons/export-3.png"));
 		exportContainer.getChildren().addAll(exportPdfButton, exportBitmapButton, exportJsonButton);
 		
 		exportPdfButton.setOnMousePressed(e ->{ 	
@@ -203,9 +203,7 @@ public class VisualizerSpatial {
         cb6.setOnAction(cb6event);
         cb7.setOnAction(cb7event);
         
-        cb2.selectedProperty().set(true);
-        cb5.selectedProperty().set(true);
-        //cb6.selectedProperty().set(true);
+
         
         labelsActive = true;
         OverlayOneActive = true;
@@ -221,12 +219,27 @@ public class VisualizerSpatial {
  		
 	}
 	
-	public void activateButtons(){
-		cb2.setDisable(false);
-		cb5.setDisable(false);
-		cb6.setDisable(false);
-		cb7.setDisable(false);
-		exportPdfButton.setDisable(false);
+	public void activateButtons(String timelineType){
+		switch (timelineType){
+			case "2DTRIANGULAR":
+				cb2.setDisable(false);
+				cb5.setDisable(false);
+				cb6.setDisable(false);
+				cb7.setDisable(false);
+				exportPdfButton.setDisable(false);
+				cb2.selectedProperty().set(true);
+				cb5.selectedProperty().set(true);
+				break;
+			case "1DCARTESIAN":
+				cb2.setDisable(false);
+				//cb5.setDisable(false);
+				//cb6.setDisable(false);
+				cb7.setDisable(false);
+				exportPdfButton.setDisable(false);
+				cb2.selectedProperty().set(true);
+				break;
+		}
+
 	}
 	
 	public void deactivateButtons(){
@@ -279,6 +292,13 @@ public class VisualizerSpatial {
 	
 	public void clearSpatial() {
 		thisSpatializer.clearDataCanvas();
+		thisSpatializer = null;
+	}
+
+	public void removeSpatializer() {
+		canvasContainer.getChildren().clear();
+		System.out.println("Try to delete");
+		thisSpatializer = null;
 	}
 	
 	public void drawSampleVectorPlayback(int _t) {

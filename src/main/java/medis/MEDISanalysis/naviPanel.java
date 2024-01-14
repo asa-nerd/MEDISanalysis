@@ -26,7 +26,7 @@ public class naviPanel {
 	VBox video;
 	
 	Text projectTitle, timelinesLabel, videoLabel;
-	Text recordingName, datasetLength, intervalDuration, durationSeconds;
+	Text dataModel, datasetLength, intervalDuration, durationSeconds;
 	Sample s;
 	
 	TextField videoOffsetNumber, offsetBeginNumber, offsetEndNumber;
@@ -62,24 +62,24 @@ public class naviPanel {
 		video.setPrefSize(213, 76);		
 			 
 		projectTitle = new Text("Project Title");
-		recordingName = new Text("Recording: ––");
+		dataModel = new Text("Data model: ––");
 		datasetLength = new Text("Length Dataset: ––");
 		intervalDuration= new Text("Interval (ms): ––");
 		durationSeconds = new Text("Duration (s): ––");
 		
 		VBox.setMargin(projectTitle, new Insets(8, 0, 8, 8));
-		VBox.setMargin(recordingName, new Insets(0, 0, 4, 8));
+		VBox.setMargin(dataModel, new Insets(0, 0, 4, 8));
 		VBox.setMargin(datasetLength, new Insets(0, 0, 4, 8));
 		VBox.setMargin(intervalDuration, new Insets(0, 0, 4, 8));
 		VBox.setMargin(durationSeconds, new Insets(0, 0, 4, 8));
 		
 		projectTitle.getStyleClass().add("main-navi-record-title");
-		recordingName.getStyleClass().add("main-navi-info-label");
+		dataModel.getStyleClass().add("main-navi-info-label");
 		datasetLength.getStyleClass().add("main-navi-info-label");
 		intervalDuration.getStyleClass().add("main-navi-info-label");
 		durationSeconds.getStyleClass().add("main-navi-info-label");
 		
-		project.getChildren().addAll(projectTitle, recordingName, datasetLength, intervalDuration, durationSeconds);
+		project.getChildren().addAll(projectTitle, dataModel, datasetLength, intervalDuration, durationSeconds);
 		
 		 loadVideoButton = new Button();
 		 openVideoWindowButton = new Button();
@@ -116,17 +116,17 @@ public class naviPanel {
 	    
 	    Tooltip t6 = new Tooltip("Timeline \n 2D Ternary \n Average Focus of Attention");
 	    Tooltip t7 = new Tooltip("Timeline \n 2D Ternary \n Average Activity");
-	    Tooltip t8 = new Tooltip("Timeline \n 2D Ternary \n Subjects Activity");
-	    Tooltip t9 = new Tooltip("Timeline \n 2D Ternary \n Subjects Focus of Attention");
+	    Tooltip t8 = new Tooltip("Timeline \n 2D Ternary \n Individual Activity");
+	    Tooltip t9 = new Tooltip("Timeline \n 2D Ternary \n Individual Focus of Attention");
 	
 	    t6.getStyleClass().add("tooltip"); 
 	    t7.getStyleClass().add("tooltip"); 
 	    t8.getStyleClass().add("tooltip"); 
 	    t9.getStyleClass().add("tooltip");
 	    
-	    Tooltip t10 = new Tooltip("Timeline \n 1D Linear \n Experience Marks");
-	    Tooltip t11 = new Tooltip("Timeline \n 1D Linear \n Average Focus of Attention");
-	    Tooltip t12 = new Tooltip("Timeline \n 1D Linear \n Subjects Focus of Attention");
+	    Tooltip t10 = new Tooltip("Timeline \n 1D Cartesian \n Experience Marks");
+	    Tooltip t11 = new Tooltip("Timeline \n 1D Cartesian \n Average Focus of Attention");
+	    Tooltip t12 = new Tooltip("Timeline \n 1D Cartesian \n Individual Focus of Attention");
 	    
 	    t10.getStyleClass().add("tooltip"); 
 	    t11.getStyleClass().add("tooltip"); 
@@ -145,7 +145,7 @@ public class naviPanel {
 	    
 	    
 	    videoOffsetNumber = new TextField("0");
-	    setVideoOffset = new Button("Set Video Offset");
+	    setVideoOffset = new Button("Video Offset (ms)");
 	    setVideoOffset.getStyleClass().add("main-navi-button"); 
 	    HBox.setMargin(videoOffsetNumber, new Insets(0, 8, 0, 0));
 	    HBox.setMargin(setVideoOffset, new Insets(0, 8, 0, 0));
@@ -153,7 +153,7 @@ public class naviPanel {
 	    setVideoOffset.setPrefSize(70,31);
 	    	    
 	    offsetBeginNumber = new TextField("0");
-	    setOffsetBegin = new Button("Set Offset Begin");
+	    setOffsetBegin = new Button("Offset Begin (tc)");
 	    setOffsetBegin.getStyleClass().add("main-navi-button"); 
 	    HBox.setMargin(offsetBeginNumber, new Insets(0, 8, 0, 0));
 	    HBox.setMargin(setOffsetBegin, new Insets(0, 8, 0, 0));
@@ -161,14 +161,14 @@ public class naviPanel {
 	    setOffsetBegin.setPrefSize(70,31);
 	    
 	    offsetEndNumber = new TextField("0");
-	    setOffsetEnd = new Button("Set Offset End");
+	    setOffsetEnd = new Button("Offset End (tc)");
 	    setOffsetEnd.getStyleClass().add("main-navi-button"); 
 	    HBox.setMargin(offsetEndNumber, new Insets(0, 8, 0, 0));
 	    HBox.setMargin(setOffsetEnd, new Insets(0, 8, 0, 0));
 	    offsetEndNumber.setPrefSize(70,31);
 	    setOffsetEnd.setPrefSize(70,31);
 	    
-		Label timelinesLabel = new Label("Timelines");
+		Label timelinesLabel = new Label("Available Timeline Visualizations");
 		Label videoLabel = new Label("Playback");
 		timelinesLabel.getStyleClass().add("labelnavi");
 		videoLabel.getStyleClass().add("labelnavi");
@@ -364,36 +364,46 @@ public class naviPanel {
 	    
 	    deactivateButtons();
 	    
-	    HBox buttonTimelines = new HBox(VisAFAButton, VisActivityButton, VisSubActivityButton, VisSubAttentionButton);
-	    HBox button_2_Timelines = new HBox(Bookmarks_Button, Cartesian1dButton, Cartesian1dAverageButton, Cartesian1dActivityButton);
+	    HBox button_ternary2_Timelines = new HBox(VisAFAButton, VisActivityButton, VisSubActivityButton, VisSubAttentionButton);
+	    HBox button_cartesian1_Timelines = new HBox(Bookmarks_Button, Cartesian1dButton, Cartesian1dAverageButton, Cartesian1dActivityButton);
 	    HBox buttonVideoOffset = new HBox(videoOffsetNumber, setVideoOffset);
 	    HBox buttonBeginOffset = new HBox(offsetBeginNumber, setOffsetBegin);
 	    HBox buttonEndOffset = new HBox(offsetEndNumber, setOffsetEnd);
 	   
 	    HBox buttonRowVideo = new HBox(loadVideoButton, openVideoWindowButton, playButton, pauseButton, stopButton);
-	    VBox.setMargin(buttonTimelines, new Insets(8, 0, 0, 9));
-	    VBox.setMargin(button_2_Timelines, new Insets(8, 0, 0, 9));
+	    VBox.setMargin(button_ternary2_Timelines, new Insets(8, 0, 0, 9));
+	    VBox.setMargin(button_cartesian1_Timelines, new Insets(8, 0, 0, 9));
 	    VBox.setMargin(buttonRowVideo, new Insets(8, 0, 0, 9));
 	    VBox.setMargin(buttonVideoOffset, new Insets(8, 0, 0, 9));
 	    VBox.setMargin(buttonBeginOffset, new Insets(8, 0, 0, 9));
 	    VBox.setMargin(buttonEndOffset, new Insets(8, 0, 0, 9));
-	    timelines.getChildren().addAll(timelinesLabel, buttonTimelines, button_2_Timelines, buttonVideoOffset, buttonBeginOffset, buttonEndOffset);
+	    timelines.getChildren().addAll(timelinesLabel, button_cartesian1_Timelines, button_ternary2_Timelines, buttonVideoOffset, buttonBeginOffset, buttonEndOffset);
 		video.getChildren().addAll(videoLabel, buttonRowVideo);
 	}
 	
-	public void activateButtons(){
+	public void activateButtons(String dataModel, long dataDimensions){
 		playButton.setDisable(false);
-	    pauseButton.setDisable(false);
-	    stopButton.setDisable(false);
-		VisAFAButton.setDisable(false);
-	    VisActivityButton.setDisable(false);
-	    VisSubActivityButton.setDisable(false);
-	    VisSubAttentionButton.setDisable(false);
-	    setVideoOffset.setDisable(false);
-	    setOffsetBegin.setDisable(false);
-	    setOffsetEnd.setDisable(false);
-	    offsetEndNumber.setDisable(false);
-	    offsetBeginNumber.setDisable(false);
+		pauseButton.setDisable(false);
+		stopButton.setDisable(false);
+		setVideoOffset.setDisable(false);
+		setOffsetBegin.setDisable(false);
+		setOffsetEnd.setDisable(false);
+		offsetEndNumber.setDisable(false);
+		offsetBeginNumber.setDisable(false);
+
+		if (dataModel.equals("Cartesian") && dataDimensions == 1){
+			Bookmarks_Button.setDisable(false);
+			Cartesian1dButton.setDisable(false);
+			Cartesian1dAverageButton.setDisable(false);
+			Cartesian1dActivityButton.setDisable(false);
+		}
+
+		if (dataModel.equals("Ternary") && dataDimensions == 2){
+			VisAFAButton.setDisable(false);
+			VisActivityButton.setDisable(false);
+			VisSubActivityButton.setDisable(false);
+			VisSubAttentionButton.setDisable(false);
+		}
 	}
 	
 	public void deactivateButtons(){
@@ -420,24 +430,28 @@ public class naviPanel {
 	    offsetEndNumber.setDisable(true);
 	    offsetBeginNumber.setDisable(true);
 	    videoOffsetNumber.setDisable(true);
-	    
+
+		/*
 	    Bookmarks_Button.setVisible(false);
 	    Cartesian1dButton.setVisible(false);
 	    Cartesian1dAverageButton.setVisible(false);
 	    Cartesian1dActivityButton.setVisible(false);
-	    
+
 	    Bookmarks_Button.setManaged(false);
 	    Cartesian1dButton.setManaged(false);
 	    Cartesian1dAverageButton.setManaged(false);
-	    Cartesian1dActivityButton.setManaged(false);	    
+	    Cartesian1dActivityButton.setManaged(false);
+	    */
+
 	}
 	
 	public VBox getNaviContainer() {
 		return mainContainer;
 	}
 	
-	public void setProjectInfos(long _datasetLength, long _interval, double _duration, String _projectTitle) {
-		projectTitle.setText(_projectTitle);
+	public void setProjectInfos(long _datasetLength, long _interval, double _duration, String _projectTitle, String _dataModel, long _dataDimensions) {
+		projectTitle.setText("Project Title: "+_projectTitle);
+		dataModel.setText("Data model: "+_dataModel+", "+_dataDimensions+" Dimensions");
 		datasetLength .setText("Dataset Length: "+_datasetLength);
 		intervalDuration.setText("Interval (ms): "+_interval);
 		durationSeconds.setText("Duration (s): " + _duration);

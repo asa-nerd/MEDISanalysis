@@ -45,8 +45,6 @@
 	-fx-border-radius: 3;
 }
 
-
-
 .labelnavi{
 	-fx-text-fill: rgb(255,255,255, 0.5);
 	-fx-font-family: 'Lato';
@@ -115,7 +113,6 @@
 /* Table */
 /*--------------------------------------*/
 
-
 .tablecontainer{
 	-fx-background-radius: 3 3 0 0;
 }
@@ -134,6 +131,12 @@
    -fx-text-fill: black; 
    -fx-alignment: CENTER;
    -fx-text-fill: rgb(112,112,112);
+}
+
+.left-aligned-header{
+	-fx-text-fill: black;
+	-fx-alignment: LEFT;
+	-fx-text-fill: rgb(112,112,112);
 }
 
 .table-view .column-header-background{

@@ -33,6 +33,9 @@ import math.geom2d.Point2D;
 
 public class Sample {
 	ArrayList<Subject> SubjectsList = new ArrayList<Subject>();
+
+	String dataModel;
+	long dataDimensions;
 	long datasetLength;
 	int sampleSize;
 	String projectTitle;
@@ -64,18 +67,19 @@ public class Sample {
        SubjectsList.add(_s);
        //datasetLength = getShortestDataset();						// amount of measuring points (temporal) of the sample  
        if (sampleSize == 0) {
-    	   datasetLength = _s.getProjectlDatasetLength();
+    	   dataModel = _s.getDataModel();
+		   dataDimensions = _s.getDataDimensions();
+		   datasetLength = _s.getProjectlDatasetLength();
     	   offsetEnd = datasetLength;
     	   interval = _s.getProjectInterval();
     	   projectTitle = _s.getProjectTitle();
     	   duration = datasetLength * interval/1000.0;
-    	   GUI.mainNavipanel.setProjectInfos(datasetLength, interval, duration, projectTitle);
+    	   GUI.mainNavipanel.setProjectInfos(datasetLength, interval, duration, projectTitle, dataModel, dataDimensions);
        }
        sampleSize ++;
        makeSampleActivityTotalAverage();
        makeSampleActivityMomentsAverage();
        makeSampleStepSizeAverage();
-       System.out.println("----");
     }
 	
 	public Subject getSubject(int i){
