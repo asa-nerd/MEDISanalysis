@@ -1,5 +1,6 @@
 package medis.MEDISanalysis;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -29,6 +30,12 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import math.geom2d.Point2D;
 
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfPage;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
+import com.itextpdf.layout.Document;
+
 public class timeline {
 	
 	HBox mainContainer;
@@ -37,7 +44,7 @@ public class timeline {
 	ScrollPane scrollContainer;
 	StackPane layerContainer;
 	Pane scaleLayer;
-	Pane dataLayer;
+	Pane dataLayer; 
 	Pane sectionLayer;
 	Pane markerLayer;
 	Pane playbackLayer;
@@ -265,8 +272,41 @@ public class timeline {
 		}});*/
 
 		e2.setOnAction(new EventHandler<ActionEvent>() { public void handle(ActionEvent event) {
+			// Creating a PdfWriter
+			String dest = "/Users/andreas/Desktop/sample.pdf";
+            PdfWriter writer = null;
+            try {
+                writer = new PdfWriter(dest);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
 
-		   PrinterJob job = PrinterJob.createPrinterJob();
+            // Creating a PdfDocument
+			PdfDocument pdfDoc = new PdfDocument(writer);
+
+			// Creating a Document
+			Document document = new Document(pdfDoc);
+
+			// Creating a new page
+			PdfPage pdfPage = pdfDoc.addNewPage();
+
+			// Creating a PdfCanvas object
+			PdfCanvas canvas = new PdfCanvas(pdfPage);
+
+			// Initial point of the line
+			canvas.moveTo(100, 300);
+
+			// Drawing the line
+			canvas.lineTo(500, 300);
+
+			// Closing the path stroke
+			canvas.closePathStroke();
+
+			// Closing the document
+			document.close();
+			System.out.println("PDF Created");
+
+		   /*PrinterJob job = PrinterJob.createPrinterJob();
            if(job != null){
 			   System.out.println("pdf");
         		job.showPrintDialog(Main.getPrimaryStage());
@@ -276,7 +316,7 @@ public class timeline {
                 }else{
                     System.out.println("Print failed");
                 }
-           }
+           }*/
 		}});
 		
 		e3.setOnAction(new EventHandler<ActionEvent>() { public void handle(ActionEvent event) {
