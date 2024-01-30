@@ -246,6 +246,24 @@ public class Sample {
     	return deviationOfAttention;
     	
     }
+
+	public double getSDOA(int _t, ArrayList<Boolean> filterList){		// SDOA = standard deviation of attention
+		double var = 0;
+		for (int i = 0; i < SubjectsList.size(); i ++) {
+			if (filterList.get(i) == Boolean.TRUE) {								// only use the currently filtered subjects
+				Point2D currentFocus = SubjectsList.get(i).getPointByIndex(_t);		// get the current measure
+				Point2D AFA = this.getAFA(_t, filterList);							// calculate the current average
+				double distance = AFA.distance(currentFocus);						// get the current distance
+				double powerDistance = Math.pow(distance,2);						// make the current variance
+				var += powerDistance;
+			}
+		}
+		double empiricalVariance = var/filterList.size();							// calculate the empirical Variance
+		double standardDeviation = Math.sqrt(empiricalVariance);					// calculate the standard deviation
+		System.out.println(filterList.size());
+		System.out.println(standardDeviation);
+		return standardDeviation;
+	}
     
     public double getSectionDOA(int _start, int _end,  ArrayList<Boolean> filterList) {
     	double sectionDOA;

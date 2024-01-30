@@ -36,7 +36,7 @@ public class MenuBarFX extends MenuBar {
 
     MenuBar mb;
     Menu fileMenu, editMenu, controlMenu, analyzeMenu, layoutMenu, helpMenu, t1, t2, t3, t4, t5;
-    MenuItem f1, f2, f3, f4, f5, f6, f7, c1, c2, c3, t11, t12, t13, t41, t42, t43, t44, l0, l1, h0;
+    MenuItem f1, f2, f3, f4, f5, f6, f7, c1, c2, c3, t11, t12, t13, t41, t42, t43, t44, t45, l0, l1, h0;
     VBox vb;
 
     MenuBarFX(Stage stage) {
@@ -72,6 +72,7 @@ public class MenuBarFX extends MenuBar {
         t42 = new MenuItem("Individual Activity");
         t43 = new MenuItem("Average Focus of Attention (Group)");
         t44 = new MenuItem("Sum of Activity (Group)");
+        t45 = new MenuItem("Standard Deviation of Attention");
 
         l0 = new MenuItem("Standard Layout");
         l1 = new MenuItem("Timeline Layout");
@@ -79,7 +80,7 @@ public class MenuBarFX extends MenuBar {
         h0 = new MenuItem("Online Help");
 
         t1.getItems().addAll(t11, t12, new SeparatorMenuItem(), t13);
-        t4.getItems().addAll(t41, t42, new SeparatorMenuItem(), t43, t44);
+        t4.getItems().addAll(t41, t42, new SeparatorMenuItem(), t43, t44, t45);
 
         fileMenu.getItems().addAll(f1, f2, f3, new SeparatorMenuItem(), f4, f5, new SeparatorMenuItem(), f6, f7);
         controlMenu.getItems().addAll(c1, c2, c3);
@@ -132,6 +133,9 @@ public class MenuBarFX extends MenuBar {
         });                    // Visualize
         t44.setOnAction(e -> {
             GUI.visTemp.makeTimelineElement(GUI.s, "ACTIVITY");
+        });
+        t45.setOnAction(e -> {
+            GUI.visTemp.makeTimelineElement(GUI.s, "STANDARDDEVIATION");
         });
         h0.setOnAction(e -> {                                    // Help Menu
             WebView webView = new WebView();
@@ -299,6 +303,7 @@ public class MenuBarFX extends MenuBar {
                         t1.setDisable(false);
                     }
                     if (firstDataModel.equals("Ternary") && firstDataDimensions == 2) {
+
                         GUI.visSpat.makeFilterListSubjects();
                         if (!GUI.visSpat.spatializerLoaded) {
                             GUI.visSpat.makeSpatializerElement(GUI.s, "2DTRIANGULAR");
@@ -306,7 +311,8 @@ public class MenuBarFX extends MenuBar {
                         GUI.visSpat.activateButtons("2DTRIANGULAR");
                         GUI.mainNavipanel.activateButtons(firstDataModel, firstDataDimensions);
                         t4.setDisable(false);
-                    }
+                        System.out.println("activated");
+                   }
                 }
             }
         });

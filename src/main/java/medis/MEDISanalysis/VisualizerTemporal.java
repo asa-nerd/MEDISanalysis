@@ -97,6 +97,12 @@ public class VisualizerTemporal {
 				//timelines.add(new1DCartesian);
 				//moduleContainer.getChildren().add(new1DCartesian.getTimeline());
 				break;
+			case "STANDARDDEVIATION":
+				timelineSDOA newStandardDeviationTimeline = new timelineSDOA(_s, timelineCounter, GUI.getTimerCounter());
+				timelines.add(newStandardDeviationTimeline);
+				moduleContainer.getChildren().add(newStandardDeviationTimeline.getTimeline());
+				break;
+
 		}	
 		timelineCounter ++;
 	}
