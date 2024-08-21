@@ -1,6 +1,10 @@
 package medis.MEDISanalysis;
 
 
+import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -93,8 +97,8 @@ public class MenuBarFX extends MenuBar {
 
         // Disable unsupported menu items and timeline items
 
-        f2.setDisable(true);
-        f3.setDisable(true);
+        //f2.setDisable(true);
+        //f3.setDisable(true);
         //f6.setDisable(true);
         t1.setDisable(true);
         t2.setDisable(true);
@@ -176,6 +180,18 @@ public class MenuBarFX extends MenuBar {
         });
         f2.setOnAction(new EventHandler<ActionEvent>() {                            // Load Project Function
             public void handle(ActionEvent event) {
+                try (
+                        FileInputStream fileIn = new FileInputStream("employee.ser");
+                        ObjectInputStream in = new ObjectInputStream(fileIn);
+                ) {
+                    GUI.mainNavipanel = (naviPanel)in.readObject();
+                    //System.out.println(e.name);
+                    //System.out.println(e.age);
+                } catch (IOException i) {
+                    System.out.println(i.getMessage());
+                } catch (ClassNotFoundException e1) {
+                    System.out.println(e1.getMessage());
+                }
 	        	 /*
 	        	 GUI.s.clearSample();
 	        	 GUI.visTemp.clearTimelines();
@@ -237,6 +253,16 @@ public class MenuBarFX extends MenuBar {
         });
         f3.setOnAction(new EventHandler<ActionEvent>() {                            // Save Project Function
             public void handle(ActionEvent event) {
+                try {
+                    FileOutputStream fileOut = new FileOutputStream("employee.ser");
+                    ObjectOutputStream out = new ObjectOutputStream(fileOut);
+                    out.writeObject(GUI.mainNavipanel);
+                    out.close();
+                    fileOut.close();
+                    System.out.println("Serialized data is saved in employee.ser");
+                } catch (IOException i) {
+                    i.printStackTrace();
+                }
 	        	 /*
 	        	 FileChooser fileChooser = new FileChooser();
 	             fileChooser.setTitle("Save");

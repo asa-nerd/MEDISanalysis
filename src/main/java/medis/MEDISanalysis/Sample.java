@@ -80,6 +80,7 @@ public class Sample {
        makeSampleActivityTotalAverage();
        makeSampleActivityMomentsAverage();
        makeSampleStepSizeAverage();
+	   makeSampleActivitySum();
     }
 	
 	public Subject getSubject(int i){
@@ -134,7 +135,7 @@ public class Sample {
 			double ca = SubjectsList.get(i).getSubjectActivitySum();
 			sumActivity += ca;
 		}
-		//System.out.println(sumActivity/sampleSize);
+		System.out.println(sumActivity/sampleSize);
 	}
 	
 	public void makeSampleActivityTotalAverage() {
@@ -247,7 +248,7 @@ public class Sample {
     	
     }
 
-	public double getSDOA(int _t, ArrayList<Boolean> filterList){		// SDOA = standard deviation of attention
+	public double getSDOA(int _t, ArrayList<Boolean> filterList){					// SDOA = standard deviation of attention
 		double var = 0;
 		for (int i = 0; i < SubjectsList.size(); i ++) {
 			if (filterList.get(i) == Boolean.TRUE) {								// only use the currently filtered subjects
@@ -260,8 +261,6 @@ public class Sample {
 		}
 		double empiricalVariance = var/filterList.size();							// calculate the empirical Variance
 		double standardDeviation = Math.sqrt(empiricalVariance);					// calculate the standard deviation
-		System.out.println(filterList.size());
-		System.out.println(standardDeviation);
 		return standardDeviation;
 	}
     

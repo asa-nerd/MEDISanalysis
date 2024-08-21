@@ -12,4 +12,12 @@
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="liberica-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
+  <component name="com.itcodebox.notebooks.projectservice.ProjectUIState">
+    <option name="notebookPaneVisible" value="true" />
+    <option name="chapterPaneVisible" value="true" />
+    <option name="notePaneVisible" value="true" />
+    <option name="selectedNotebookId" value="1" />
+    <option name="selectedChapterId" value="2" />
+    <option name="selectedNoteId" value="5" />
+  </component>
 </project>

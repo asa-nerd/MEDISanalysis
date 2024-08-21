@@ -1,6 +1,6 @@
 package medis.MEDISanalysis;
 
-import java.io.File;
+import java.io.*;
 import java.net.URI;
 
 import javafx.event.EventHandler;
@@ -18,23 +18,30 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 
-public class naviPanel {
-	
+public class naviPanel implements Externalizable {
+
+	int videoOffset = 0;
+	int dataOffsetStart = 0;
+	int dataOffsetEnd = 0;
 	VBox mainContainer;
 	VBox project;
 	VBox timelines;
 	VBox video;
-	
+
 	Text projectTitle, timelinesLabel, videoLabel;
 	Text dataModel, datasetLength, intervalDuration, durationSeconds;
 	Sample s;
-	
+
 	TextField videoOffsetNumber, offsetBeginNumber, offsetEndNumber;
-	
+
 	Button playButton, pauseButton, stopButton, VisAFAButton, VisActivityButton, VisSubAttentionButton, VisSubActivityButton, Bookmarks_Button, Cartesian1dButton, Cartesian1dAverageButton, Cartesian1dActivityButton;
 	Button setVideoOffset, setOffsetBegin,setOffsetEnd;
 	Button loadVideoButton, openVideoWindowButton;
-	
+
+	public naviPanel(){
+		//offsetBeginNumber.setText(Integer.toString(dataOffsetStart));
+		System.out.println("navi made with empty constructor");
+	}
 	naviPanel(Sample _s){
 		s = _s;
 		
@@ -321,6 +328,7 @@ public class naviPanel {
 	    setVideoOffset.setOnMousePressed(e ->{ 
 	    	Integer value1 = Integer.valueOf(videoOffsetNumber.getText());
 	    	GUI.setVideoStartOffset(value1);
+			videoOffset = value1;
 	    });
 	    
 	    videoOffsetNumber.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -329,6 +337,7 @@ public class naviPanel {
 	            if (k.getCode().equals(KeyCode.ENTER)) {
 	            	Integer value1 = Integer.valueOf(videoOffsetNumber.getText());
 	    	    	GUI.setVideoStartOffset(value1);
+					videoOffset = value1;
 	            }
 	        }
 	    });
@@ -336,6 +345,7 @@ public class naviPanel {
 	    setOffsetBegin.setOnMousePressed(e ->{ 
 	    	Integer value1 = Integer.valueOf(offsetBeginNumber.getText());
 	    	GUI.setDataBeginOffset(value1);
+			dataOffsetStart = value1;
 	    });
 	    offsetBeginNumber.setOnKeyPressed(new EventHandler<KeyEvent>() {
 	        @Override
@@ -343,6 +353,7 @@ public class naviPanel {
 	            if (k.getCode().equals(KeyCode.ENTER)) {
 	            	Integer value1 = Integer.valueOf(offsetBeginNumber.getText());
 	    	    	GUI.setDataBeginOffset(value1);
+					dataOffsetStart = value1;
 	            }
 	        }
 	    });
@@ -380,7 +391,28 @@ public class naviPanel {
 	    timelines.getChildren().addAll(timelinesLabel, button_cartesian1_Timelines, button_ternary2_Timelines, buttonVideoOffset, buttonBeginOffset, buttonEndOffset);
 		video.getChildren().addAll(videoLabel, buttonRowVideo);
 	}
-	
+
+	// Functions for Externalize interface that helps with defining,
+	// which data from the class should be stored when the MEDIS-project
+	// is saved and loaded by the user.
+	@Override
+	public void writeExternal(ObjectOutput out) throws IOException {
+		out.writeInt(videoOffset);
+		out.writeInt(dataOffsetStart);
+	}
+
+	@Override
+	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+		videoOffset = in.readInt();
+		dataOffsetStart = in.readInt();
+		//offsetBeginNumber.setText(Integer.toString(dataOffsetStart));
+		System.out.println("all read");
+	}
+
+	/*public void setDataOffsetStart(int _d){
+
+	}*/
+
 	public void activateButtons(String dataModel, long dataDimensions){
 		playButton.setDisable(false);
 		pauseButton.setDisable(false);
@@ -469,6 +501,5 @@ public class naviPanel {
    	 	GUI.mainNavipanel.offsetBeginNumber.setText("0");
    	 	GUI.mainNavipanel.offsetEndNumber.setText("0");
 	}
-	
-	
+
 }

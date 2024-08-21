@@ -104,6 +104,9 @@ public class Subject {
 		
 		for (int i = 1; i < PointsList.size(); i++) { 				// calculate activity for Points and save them in the
 																	// Point-Objects
+		/*int startOFF = 18;
+		int endOFF = 1026;
+		for (int i = startOFF; i<=endOFF; i++){*/
 			Point lastPoint = PointsList.get(i - 1);
 			Point currentPoint = PointsList.get(i);
 			
