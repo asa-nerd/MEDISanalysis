@@ -40,7 +40,7 @@ public class MenuBarFX extends MenuBar {
 
     MenuBar mb;
     Menu fileMenu, editMenu, controlMenu, analyzeMenu, layoutMenu, helpMenu, t1, t2, t3, t4, t5;
-    MenuItem f1, f2, f3, f4, f5, f6, f7, c1, c2, c3, t11, t12, t13, t41, t42, t43, t44, t45, l0, l1, h0;
+    MenuItem f1, f2, f3, f4, f5, f6, f7, c1, c2, c3, t0, t11, t12, t13, t41, t42, t43, t44, t45, l0, l1, h0;
     VBox vb;
 
     MenuBarFX(Stage stage) {
@@ -64,6 +64,7 @@ public class MenuBarFX extends MenuBar {
         c2 = new MenuItem("Pause");
         c3 = new MenuItem("Stop");
 
+        t0 = new MenuItem("Bookmarks");
         t1 = new Menu("Cartesian 1D");
         t2 = new Menu("Cartesian 2D");
         t3 = new Menu("Cartesian 3D");
@@ -88,7 +89,7 @@ public class MenuBarFX extends MenuBar {
 
         fileMenu.getItems().addAll(f1, f2, f3, new SeparatorMenuItem(), f4, f5, new SeparatorMenuItem(), f6, f7);
         controlMenu.getItems().addAll(c1, c2, c3);
-        analyzeMenu.getItems().addAll(t1, t2, t3, t4, t5); //, a1, a2, new SeparatorMenuItem(), a3, a4);
+        analyzeMenu.getItems().addAll(t0, t1, t2, t3, t4, t5); //, a1, a2, new SeparatorMenuItem(), a3, a4);
         layoutMenu.getItems().addAll(l0, l1);
         helpMenu.getItems().add(h0);
 
@@ -100,6 +101,7 @@ public class MenuBarFX extends MenuBar {
         //f2.setDisable(true);
         //f3.setDisable(true);
         //f6.setDisable(true);
+        t0.setDisable(true);
         t1.setDisable(true);
         t2.setDisable(true);
         t3.setDisable(true);
@@ -117,8 +119,11 @@ public class MenuBarFX extends MenuBar {
         c3.setOnAction(e -> {
             GUI.stopPlayback();
         });                // Control – Stop
-        t11.setOnAction(e -> {
+        t0.setOnAction(e -> {
             GUI.visTemp.makeTimelineElement(GUI.s, "BOOKMARKS");
+        });
+        t11.setOnAction(e -> {
+            GUI.visTemp.makeTimelineElement(GUI.s, "BOOKMARKSCARTESIAN");
         });
         t12.setOnAction(e -> {
             GUI.visTemp.makeTimelineElement(GUI.s, "1DCARTESIAN");
@@ -319,6 +324,16 @@ public class MenuBarFX extends MenuBar {
                         } catch (IOException e) {
                         }
                     }
+                    System.out.println("Data Model: "+firstDataModel);
+                    if (firstDataModel.equals("Bookmarks") && firstDataDimensions == 1) {
+                        GUI.visSpat.makeFilterListSubjects();
+                        if (!GUI.visSpat.spatializerLoaded) {
+                            //GUI.visSpat.makeSpatializerElement(GUI.s, "BOOKMARKS");
+                        }
+                        //GUI.visSpat.activateButtons("BOOKMARKS");
+                        GUI.mainNavipanel.activateButtons(firstDataModel, firstDataDimensions);
+                        t0.setDisable(false);
+                    }
                     if (firstDataModel.equals("Cartesian") && firstDataDimensions == 1) {
                         GUI.visSpat.makeFilterListSubjects();
                         if (!GUI.visSpat.spatializerLoaded) {
@@ -326,6 +341,7 @@ public class MenuBarFX extends MenuBar {
                         }
                         GUI.visSpat.activateButtons("1DCARTESIAN");
                         GUI.mainNavipanel.activateButtons(firstDataModel, firstDataDimensions);
+                        t0.setDisable(false);
                         t1.setDisable(false);
                     }
                     if (firstDataModel.equals("Ternary") && firstDataDimensions == 2) {
@@ -337,7 +353,6 @@ public class MenuBarFX extends MenuBar {
                         GUI.visSpat.activateButtons("2DTRIANGULAR");
                         GUI.mainNavipanel.activateButtons(firstDataModel, firstDataDimensions);
                         t4.setDisable(false);
-                        System.out.println("activated");
                    }
                 }
             }

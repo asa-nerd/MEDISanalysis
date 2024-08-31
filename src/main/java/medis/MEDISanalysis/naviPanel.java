@@ -423,6 +423,14 @@ public class naviPanel implements Externalizable {
 		offsetEndNumber.setDisable(false);
 		offsetBeginNumber.setDisable(false);
 
+
+		if (dataModel.equals("Bookmarks") && dataDimensions == 1){
+			Bookmarks_Button.setDisable(false);
+			//Cartesian1dButton.setDisable(false);
+			//Cartesian1dAverageButton.setDisable(false);
+			//Cartesian1dActivityButton.setDisable(false);
+		}
+
 		if (dataModel.equals("Cartesian") && dataDimensions == 1){
 			Bookmarks_Button.setDisable(false);
 			Cartesian1dButton.setDisable(false);

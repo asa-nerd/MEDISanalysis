@@ -76,11 +76,16 @@ public class VisualizerTemporal {
 				timelineSubjectsAttention newTSAT = new timelineSubjectsAttention(_s, timelineCounter, GUI.getTimerCounter());
 				timelines.add(newTSAT);
 				moduleContainer.getChildren().add(newTSAT.getTimeline());
-				break;	
+				break;
 			case "BOOKMARKS":
 				timelineBookmarks newBOOK = new timelineBookmarks(_s, timelineCounter, GUI.getTimerCounter());
 				timelines.add(newBOOK);
 				moduleContainer.getChildren().add(newBOOK.getTimeline());
+				break;
+			case "BOOKMARKSCARTESIAN":
+				timelineBookmarksCartesian newBOOKCartesian = new timelineBookmarksCartesian(_s, timelineCounter, GUI.getTimerCounter());
+				timelines.add(newBOOKCartesian);
+				moduleContainer.getChildren().add(newBOOKCartesian.getTimeline());
 				break;
 			case "1DCARTESIAN":
 				timeline1dCartesian new1DCartesian = new timeline1dCartesian(_s, timelineCounter, GUI.getTimerCounter());
