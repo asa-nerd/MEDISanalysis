@@ -9,6 +9,7 @@ public class timelineBookmarks extends timeline{
 	ArrayList<Circle> dots;
 	ArrayList<Line> lines;
 	ArrayList<Point> points;
+	ArrayList<Bookmark> bookmarks;
 	ArrayList<Double> linieLengths;
 	double originY =  120;
 	int rangeLength;
@@ -22,6 +23,7 @@ public class timelineBookmarks extends timeline{
 		timelineType = "BOOK";
 		dots = new ArrayList<Circle>();
 		points = new ArrayList<Point>();
+		bookmarks = new ArrayList<Bookmark>();
 		baseLine = new Line();
         drawScale(0, s.getShortestDataset());
         drawTimeline(0, s.getShortestDataset());
@@ -30,6 +32,7 @@ public class timelineBookmarks extends timeline{
 	
 	@Override
 	public void clearTimeline() {
+		System.out.println("clear timeline");
 		dots.clear();
 		//lines.clear();
 		//linieLengths.clear();
@@ -45,36 +48,19 @@ public class timelineBookmarks extends timeline{
 	    stepSize = zoomFactor*2;
 		
 		for (int i = 0; i < dots.size(); i++) {
-			circleRadius = zoomFactor*2;
+			circleRadius = zoomFactor*yScale*20;
 			if (circleRadius < minSizeThreshold) {circleRadius = minSizeThreshold;}
-			//linesWidth = circleRadius/2;
-			//len = linieLengths.get(i);
-			
 			Circle c = dots.get(i);
 			xpos = (int) c.getProperties().get("timeCode");
 			c.setCenterY(originY);
 			c.setCenterX(xpos*stepSize+0.5);
 			c.setRadius(circleRadius);
-			if (i > s.getDataOffsetBegin() && i < s.getDataOffsetEnd()) 
+			c.setOpacity(1);
+			/*if (i > s.getDataOffsetBegin() && i < s.getDataOffsetEnd())
 				c.setOpacity(1);
-			 	else c.setOpacity(0.2);
-			
-			/*Line l = lines.get(i);
-			xpos = (int) l.getProperties().get("timeCode");
-			l.setStartY(originY);
-			l.setEndY(originY-len*yScale);
-			l.setStartX(xpos*stepSize+0.5);
-			l.setEndX(xpos*stepSize+0.5);
-			l.setStrokeWidth(zoomFactor/4);
-			if (i > s.getDataOffsetBegin() && i < s.getDataOffsetEnd()) 
-				l.setOpacity(1);
-			 	else l.setOpacity(0.2);
-
-			 */
+			 	else c.setOpacity(0.2);*/
 		}
-
 		layerContainer.setPrefWidth(rangeLength*zoomFactor*2);	// Adjust the width of the container
-	
 	}
 	
 	@Override
@@ -86,38 +72,36 @@ public class timelineBookmarks extends timeline{
 	    double lHeight;
 	    double circleRadius;
 	    double lineWidth;
-	    
-		for (int i = _begin; i < _end; i = i + 1) {									// Definitions specific for timeline "Bookmarks"
-			points = s.getCurrentButtonsPressed(i, filterListSubjects);				// get measure points where button is pressed
-			for (int j=0; j<points.size(); j++) {									// loop the measure points we got
-				Point p = points.get(j);
-				//lHeight = p.x *100;											// get line height as current Shift of Attention
-				//linieLengths.add(lHeight);
-				circleRadius = zoomFactor*2;
-				if (circleRadius < minSizeThreshold) {circleRadius = minSizeThreshold;}
-				Circle circle = new Circle(i*stepSize+0.5, originY, circleRadius);
-				circle.setFill(baseColor);
-				circle.getProperties().put("timeCode", i);
-				circle.getProperties().put("color", baseColor);
-				circle.setStrokeWidth(0);
-				if (i > s.getDataOffsetBegin() && i < s.getDataOffsetEnd()) 
+
+		//ArrayList<Boolean> getFilterListSubjects()
+		for(int i = 0; i< s.sampleSize; i++){
+			if (filterListSubjects.get(i) == true) {
+				Subject sub = s.getSubject(i);
+				ArrayList<Bookmark> subjectBookmarks = sub.getAllBookmarks();
+				for (int k = 0; k < subjectBookmarks.size(); k++) {
+					//System.out.println("looping Bookmarks"+k);
+					Bookmark b = subjectBookmarks.get(k);
+					long ts = b.getTimeStamp();
+					int tp = b.getTimePos();
+
+					circleRadius = zoomFactor * yScale * 20;
+					if (circleRadius < minSizeThreshold) {
+						circleRadius = minSizeThreshold;
+					}
+					Circle circle = new Circle(tp * stepSize + 0.5, originY, circleRadius);
+					circle.setFill(baseColor);
+					circle.getProperties().put("timeCode", tp);
+					circle.getProperties().put("color", baseColor);
+					circle.setStrokeWidth(0);
 					circle.setOpacity(1);
-				 	else circle.setOpacity(0.2);
-				dots.add(circle);
-				
-				
-				/*Line line = new Line(i*stepSize+0.5, originY, i*stepSize+0.5, originY-lHeight);
-				line.getProperties().put("timeCode", i);
-				line.getProperties().put("color", baseColor);
-				line.setStroke(baseColor);		// set color for line
-				lineWidth = circleRadius/2;
-				line.setStrokeWidth(lineWidth);	
-				if (i > s.getDataOffsetBegin() && i < s.getDataOffsetEnd()) 
-					line.setOpacity(1);
-				 	else line.setOpacity(0.2);
-				lines.add(line);*/
+					/*if (i > s.getDataOffsetBegin() && i < s.getDataOffsetEnd())
+						circle.setOpacity(1);
+					else circle.setOpacity(0.2);*/
+					dots.add(circle);
+				}
 			}
 		}
+
 
 		makeRolloversDots(dots, hightlightColor);								// add rollover and clickability
 		baseLine.setStartX(0);													// make a baseline at the origin (the center) of the timeline

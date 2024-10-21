@@ -39,8 +39,10 @@ public class Subject {
 
 	JSONArray JSONData;
 	JSONArray subjectPoints;
+	JSONArray subjectBookmarks;
 
-	ArrayList<Point> PointsList = new ArrayList<Point>(); // Store measuring points of subject
+	ArrayList<Point> PointsList = new ArrayList<Point>(); 				// Store measuring points of subject
+	ArrayList<Bookmark> BookmarksList = new ArrayList<Bookmark>(); 		// Store bookmarks of subject
 	Point2D triOne, triTwo, triThree;
 	long triangleSize = 400;
 	double triHeight = triangleSize / 2 * Math.sqrt(3);
@@ -86,7 +88,21 @@ public class Subject {
 		projectDataSetLength = projectTimecodeLength/projectTimecodeInterval;
 		
 		JSONObject timeseries = (JSONObject) JSONData.get(1);
+		//JSONObject bookmarks = (JSONObject) JSONData.get(2);
 		subjectPoints = (JSONArray) timeseries.get("timesequence");
+
+		if (JSONData.size() > 2){
+			JSONObject bookmarks = (JSONObject) JSONData.get(2);
+			subjectBookmarks = (JSONArray) bookmarks.get("marks");
+			for (int i = 0; i < subjectBookmarks.size(); i++) {
+				JSONObject bookmarkJSON = (JSONObject) subjectBookmarks.get(i);
+				if (bookmarkJSON.containsKey("timeStamp")) {
+					long ts = (long) bookmarkJSON.get("timeStamp");
+					int timePos = (int) ((int) ts/projectTimecodeInterval);
+					BookmarksList.add(new Bookmark(1, ts, timePos, "SmartPhone"));
+				}
+			}
+		}
 
 		triOne = new Point2D(-triangleSize / 2, triHeight / 3);
 		triTwo = new Point2D(triangleSize / 2, triHeight / 3);
@@ -245,6 +261,14 @@ public class Subject {
 	
 	public Point2D getPointByIndex(int _t) {
 		return PointsList.get(_t).getPoint();
+	}
+
+	public Bookmark getBookmarkByIndex(int _t){
+		return BookmarksList.get(_t);
+	}
+
+	public ArrayList<Bookmark> getAllBookmarks(){
+		return BookmarksList;
 	}
 
 	public Point getPointObjectByIndex(int _t) {

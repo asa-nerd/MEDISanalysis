@@ -329,12 +329,13 @@ public class MenuBarFX extends MenuBar {
                         GUI.visSpat.makeFilterListSubjects();
                         if (!GUI.visSpat.spatializerLoaded) {
                             //GUI.visSpat.makeSpatializerElement(GUI.s, "BOOKMARKS");
+                            GUI.visSpat.makeSpatializerElement(GUI.s, "1DCARTESIAN");
                         }
                         //GUI.visSpat.activateButtons("BOOKMARKS");
                         GUI.mainNavipanel.activateButtons(firstDataModel, firstDataDimensions);
                         t0.setDisable(false);
                     }
-                    if (firstDataModel.equals("Cartesian") && firstDataDimensions == 1) {
+                    if (firstDataModel.equals("cartesian") && firstDataDimensions == 1) {
                         GUI.visSpat.makeFilterListSubjects();
                         if (!GUI.visSpat.spatializerLoaded) {
                             GUI.visSpat.makeSpatializerElement(GUI.s, "1DCARTESIAN");
@@ -344,7 +345,7 @@ public class MenuBarFX extends MenuBar {
                         t0.setDisable(false);
                         t1.setDisable(false);
                     }
-                    if (firstDataModel.equals("Ternary") && firstDataDimensions == 2) {
+                    if (firstDataModel.equals("triangle") && firstDataDimensions == 2) {
 
                         GUI.visSpat.makeFilterListSubjects();
                         if (!GUI.visSpat.spatializerLoaded) {

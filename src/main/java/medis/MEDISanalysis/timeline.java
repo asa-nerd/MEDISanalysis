@@ -234,7 +234,7 @@ public class timeline {
 			maxStepSizeZoom = minStepSizeZoom*2;
 		}
 		
-		minStepSizeZoom = 2;
+		//minStepSizeZoom = 2;
 		zoomFactor = minStepSizeZoom;
 		stepSize = zoomFactor*2;
 		
@@ -375,7 +375,8 @@ public class timeline {
 		//layerContainer.prefWidthProperty().set(visualContainer.getBoundsInParent().getWidth());
 		scale.setWidth(layerContainer.getBoundsInParent().getWidth());
 		
-		scale.updateScale(layerContainer.getPrefWidth(), stepSize);
+		//scale.updateScale(layerContainer.getPrefWidth(), stepSize);
+		scale.updateScale(1200, stepSize);
 		updatePlaybackHead();
 		updatePlaybackTimer(_initialTimeCode);
 		makeFilterListSubjects();
