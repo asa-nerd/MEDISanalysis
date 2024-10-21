@@ -45,6 +45,7 @@ public class MenuBarFX extends MenuBar {
 
     MenuBarFX(Stage stage) {
         MenuBar mb = new MenuBar();
+        mb.setUseSystemMenuBar(true);
         fileMenu = new Menu("File");
         //editMenu = new Menu("Edit");
         controlMenu = new Menu("Control");
