@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Main-Class: medis.MEDISanalysis.Launcher
+Class-Path: layout-7.2.6.jar bcprov-jdk18on-1.75.jar slf4j-api-1.7.36.ja
+ r commons-7.2.6.jar bcpkix-jdk18on-1.75.jar kernel-7.2.6.jar io-7.2.6.j
+ ar json-simple-1.1.1.jar hamcrest-core-1.1.jar javaGeom-0.11.1.jar itex
+ tpdf-5.5.13.3.jar bcutil-jdk18on-1.75.jar junit-4.10.jar
+

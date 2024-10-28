@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact name="MEDISanalysis:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MEDISanalysis_jar</output-path>
+    <root id="root">
+      <element id="archive" name="MEDISanalysis.jar">
+        <element id="module-output" name="MEDISanalysis" />
+      </element>
+      <element id="library" level="project" name="Maven: com.itextpdf:layout:7.2.6" />
+      <element id="library" level="project" name="Maven: org.bouncycastle:bcprov-jdk18on:1.75" />
+      <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.36" />
+      <element id="library" level="project" name="Maven: com.itextpdf:commons:7.2.6" />
+      <element id="library" level="project" name="Maven: org.bouncycastle:bcpkix-jdk18on:1.75" />
+      <element id="library" level="project" name="Maven: com.itextpdf:kernel:7.2.6" />
+      <element id="library" level="project" name="Maven: com.itextpdf:io:7.2.6" />
+      <element id="library" level="project" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" />
+      <element id="library" level="project" name="Maven: org.hamcrest:hamcrest-core:1.1" />
+      <element id="library" level="project" name="Maven: math.geom2d:javaGeom:0.11.1" />
+      <element id="library" level="project" name="Maven: com.itextpdf:itextpdf:5.5.13.3" />
+      <element id="library" level="project" name="Maven: org.bouncycastle:bcutil-jdk18on:1.75" />
+      <element id="library" level="project" name="Maven: junit:junit:4.10" />
+    </root>
+  </artifact>
+</component>
