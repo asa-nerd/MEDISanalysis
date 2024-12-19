@@ -2,6 +2,8 @@ package medis.MEDISanalysis;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+
+import javafx.scene.control.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import javafx.event.ActionEvent;
@@ -9,14 +11,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.print.PrinterJob;
 import javafx.scene.Group;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.CheckMenuItem;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Slider;
 import javafx.scene.input.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -68,11 +62,12 @@ public class timeline {
 	
 	Slider zoomXSlider;
 	Slider zoomYSlider;
-	Slider clusterIntervalSlider;
+	Slider stepSizeSlider;
 	Label zoomXLabel;
 	Label zoomYLabel;
-	Label clusterIntervalLabel;
-	
+	Label stepSizeLabel;
+
+	//CheckBox stepSizeCheckBox;
 	
 	timelinePlaybackMarker playMarker;
 	ArrayList<Line> gridLines;
@@ -180,8 +175,8 @@ public class timeline {
 		buttonPanelRight.getChildren().addAll(buttonCloseTL, labelTL, buttonMoveTL);	
 		
 		mainContainer.getChildren().addAll(guiContainer, visualContainer, buttonPanelRight);
-		
-        MenuPullDown m1 = new MenuPullDown("Config");
+
+		MenuPullDown m1 = new MenuPullDown("Config"); 	// Creates a pull-down menu labeled "Config" for the application's menu system.
 		MenuItem c2=new MenuItem("Follow Playback");
 		c2.setDisable(true);
 		//MenuItem c3=new MenuItem("Discard Timeline");
@@ -243,24 +238,25 @@ public class timeline {
         VBox.setMargin(sliderContainer,new Insets(12,6,6,8));
 		zoomXSlider = new Slider(minStepSizeZoom,maxStepSizeZoom, minStepSizeZoom);
         zoomYSlider = new Slider(0.1, 5, 1);
-        clusterIntervalSlider = new Slider(1, 100, 1);
+		stepSizeSlider = new Slider(1, 100, 1);
+		//stepSizeCheckBox = new CheckBox("Stepsize");
         zoomXLabel = new Label("Zoom X");
         zoomYLabel = new Label("Zoom Y");
-        clusterIntervalLabel = new Label("Cluster Interval");
+        stepSizeLabel = new Label("Averaging Interval");
         VBox.setMargin(zoomXLabel,new Insets(2,0,6,0));
         VBox.setMargin(zoomYLabel,new Insets(2,0,6,0));
-        VBox.setMargin(clusterIntervalLabel,new Insets(2,0,6,0));
-        clusterIntervalSlider.setDisable(true);
+        VBox.setMargin(stepSizeLabel,new Insets(2,0,6,0));
+		//stepSizeSlider.setDisable(true);
         zoomXSlider.setPrefSize(90, 20);
         zoomYSlider.setPrefSize(90, 20);
-        clusterIntervalSlider.setPrefSize(90, 20);
+		stepSizeSlider.setPrefSize(90, 20);
         zoomXSlider.setMaxSize(90, 20);
         zoomYSlider.setMaxSize(90, 20);
-        clusterIntervalSlider.setMaxSize(90, 20);
+		stepSizeSlider.setMaxSize(90, 20);
         zoomXLabel.getStyleClass().add("sliderlabel");
         zoomYLabel.getStyleClass().add("sliderlabel");
-        clusterIntervalLabel.getStyleClass().add("sliderlabel");
-        sliderContainer.getChildren().addAll( zoomXSlider, zoomXLabel, zoomYSlider, zoomYLabel, clusterIntervalSlider, clusterIntervalLabel);
+        stepSizeLabel.getStyleClass().add("sliderlabel");
+        sliderContainer.getChildren().addAll( zoomXSlider, zoomXLabel, zoomYSlider, zoomYLabel, stepSizeSlider, stepSizeLabel);
         
         guiContainer.getChildren().addAll(m1,m3,m4,sliderContainer);
 
@@ -362,9 +358,19 @@ public class timeline {
 				tlm.section.updateScaledSectionHeight();
 			}
         	updateTimeline();
-		});  
-		
-		clusterIntervalSlider.valueProperty().addListener((observable, oldValue, newValue) -> {	// Adding Listener to value property.
+		});
+
+		/*stepSizeCheckBox.setOnAction(event -> {
+			if (stepSizeCheckBox.isSelected()) {
+				//System.out.println("Cluster selected");
+				stepSizeSlider.setDisable(false);
+			} else {
+				//System.out.println("Cluster deselected");
+				stepSizeSlider.setDisable(true);
+			}
+		});*/
+
+		stepSizeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {	// Adding Listener to value property.
 			clusterInterval = Math.round((Double) newValue);
 			updateTimeline();
 			System.out.println(clusterInterval);
