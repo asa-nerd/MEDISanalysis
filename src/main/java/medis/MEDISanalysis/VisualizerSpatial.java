@@ -258,18 +258,25 @@ public class VisualizerSpatial {
 	public void makeSpatializerElement(Sample _s, String _type) {
 		
 		switch(_type) {
-			case "2DTRIANGULAR":
-				thisSpatializer = new spatializer2dTriangular(_s);
-				canvasContainer.getChildren().add(thisSpatializer.getSpatializer());
-				spatializerLoaded = true;
-				drawSampleVectorPlayback(currentTimeCode);
-				break;
 			case "1DCARTESIAN":
 				thisSpatializer = new spatializer1dCartesian(_s);
 				canvasContainer.getChildren().add(thisSpatializer.getSpatializer());
 				spatializerLoaded = true;
 				drawSampleVectorPlayback(currentTimeCode);
 				break;
+			case "1DBOOKMARKS":
+				thisSpatializer = new spatializer1dBookmarks(_s);
+				canvasContainer.getChildren().add(thisSpatializer.getSpatializer());
+				spatializerLoaded = true;
+				drawSampleVectorPlayback(currentTimeCode);
+				break;
+			case "2DTRIANGULAR":
+				thisSpatializer = new spatializer2dTriangular(_s);
+				canvasContainer.getChildren().add(thisSpatializer.getSpatializer());
+				spatializerLoaded = true;
+				drawSampleVectorPlayback(currentTimeCode);
+				break;
+
 		}			
 	}
 	
