@@ -303,7 +303,8 @@ public class VisualizerSpatial {
 	
 	public void drawSampleVectorPlayback(int _t) {
 		currentTimeCode = _t;
-		
+
+
 		thisSpatializer.drawSampleVector(_t, filterListSubjectsVisualizer);
 		if (convexHullActive)
 			thisSpatializer.drawConvexHUll(_t, filterListSubjectsVisualizer);
@@ -314,7 +315,7 @@ public class VisualizerSpatial {
 		if (OverlayTwoActive)
 			thisSpatializer.drawOverlayTwo();
 		if (deviationActive)
-			thisSpatializer.drawDeviation(_t, filterListSubjectsVisualizer);	
+			thisSpatializer.drawDeviation(_t, filterListSubjectsVisualizer);
 	}
 	
 	public void drawSection(int _begin, int _end, ArrayList<Boolean> filterList) {									// empty the data Pane 

@@ -135,7 +135,6 @@ public class VisualizerTemporal {
 		double propBlue = distancePointLine(currentPoint, leftCorner, rightCorner);	// get blue
 	    rgb[2] = mapValue(propBlue, 0, 0.88/2, 0, 255); 											// map Value and save it to rgb array				
 		return rgb;
-		
 	}
 	
 	public static double distancePointLine(Point2D PV, Point2D LV1, Point2D LV2) {

@@ -58,11 +58,14 @@ public class timelineMarker {
 		
 		g.getStyleClass().add("marker");
         g.relocate(xPosTimeCode*_stepSize-5, 15);
-        
-        
+
+
         g.setOnMousePressed(evt ->{
         	startXScreen = evt.getScreenX();
         	startXScrollPane = g.getBoundsInParent().getMinX();
+			if (section != null) {
+				GUI.visSpat.drawSection((int) section.getStartTimeCode(), (int) (section.getEndTimeCode()), filterListSubjects);
+			}
         });
         g.setOnMouseDragged(evt -> {
         	double distance = evt.getScreenX() - startXScreen;
@@ -78,11 +81,13 @@ public class timelineMarker {
         	l.setText(String.valueOf((int) xPosTimeCode));
         	g.relocate(xPosTimeCode*stepSize-5, 15);
         	if (section != null) {
+
         		section.synchronizeStepSize(stepSize);
         		section.moveSection(xPosTimeCode);
-        		if (showSectionInSpatial == true) {
+        		//if (showSectionInSpatial == true) {
+					//System.out.println("move");
         			GUI.visSpat.drawSection((int) section.getStartTimeCode(), (int) (section.getEndTimeCode()), filterListSubjects);
-        		} 
+        		//}
         	}
         	
         });

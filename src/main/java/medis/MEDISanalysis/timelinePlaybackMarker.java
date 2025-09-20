@@ -48,7 +48,8 @@ public class timelinePlaybackMarker {
         g.setOnMousePressed(evt ->{
         	startXScreen = evt.getScreenX();
         	startXScrollPane = g.getBoundsInParent().getMinX();
-        });
+			GUI.visSpat.drawSampleVectorPlayback((int) timeCodePos);
+		});
         g.setOnMouseDragged(evt -> {
         	double distance = evt.getScreenX() - startXScreen;
         	double newXPixelPos = startXScrollPane + distance;

@@ -31,7 +31,10 @@ public class spatializer2dTriangular extends spatializer {
 	public void drawChart() {
 		Polygon triangle = new Polygon();
     		triangle.getPoints().addAll((double)scaleTriangle/2, 0.0, (double)scaleTriangle, (double)heightTriangle, 0.0, (double) heightTriangle);
-    		triangle.setFill(Color.rgb(255,255,255,0.1));
+    		//triangle.setFill(Color.rgb(255,255,255,0.1));
+			triangle.setFill(null);
+			triangle.setStrokeWidth(1);
+			triangle.setStroke(Color.BLACK);
 	    Polygon greenCorner = new Polygon();
 	    	greenCorner.setFill(Color.rgb(0, 255, 0));
 	    	greenCorner.getPoints().addAll(0.0, (double) heightTriangle, 20.0, (double) heightTriangle, 10.0, (double) heightTriangle-17.3);
@@ -44,7 +47,8 @@ public class spatializer2dTriangular extends spatializer {
 	    	blueCorner.setFill(Color.rgb(0, 0, 255));
 	    	blueCorner.getPoints().addAll((double)scaleTriangle/2, 0.0,(double)scaleTriangle/2+10.0, (double) 17.3, (double)scaleTriangle/2-10.0, (double) 17.3);
 	    	blueCorner.setStrokeWidth(0);
-	    	chartCanvas.getChildren().addAll(triangle, greenCorner, redCorner, blueCorner);
+	    	//chartCanvas.getChildren().addAll(triangle, greenCorner, redCorner, blueCorner);
+			chartCanvas.getChildren().addAll(triangle);
 	}
 	
 	@Override
@@ -59,10 +63,11 @@ public class spatializer2dTriangular extends spatializer {
 		//double afaY = pointAFA.y()*heightTriangle+heightTriangle*2/3;
 		double[] colorAFA = getColor(pointAFA);				// get color for current AFA
 															
-		Circle circleAFA = new Circle(afaX,afaY,7);			// make, style and position Circle for AFA
+		//Circle circleAFA = new Circle(afaX,afaY,7);			// make, style and position Circle for AFA
+		Circle circleAFA = new Circle(afaX,afaY,32);			// make, style and position Circle for AFA
 		circleAFA.setStrokeWidth(1);
 		circleAFA.setFill(Color.rgb((int) colorAFA[0], (int) colorAFA[1], (int) colorAFA[2]));
-		circleAFA.setStroke(Color.WHITE);
+		circleAFA.setStroke(Color.BLACK);
 		
 		
 		//for (Subject sub: s.SubjectsList) {			
@@ -75,22 +80,28 @@ public class spatializer2dTriangular extends spatializer {
 				//double py = p.y()*heightTriangle+heightTriangle*2/3;
 				double[] colorP = getColor(p);					// get color for current subject
 				
-				Circle c = new Circle(px,py,1);					// make and style circle
-				c.setStrokeType(StrokeType.OUTSIDE);
-				c.setStrokeWidth(2);
-				c.setFill(Color.BLACK);
-				c.setStroke(Color.rgb((int) colorP[0], (int) colorP[1], (int) colorP[2]));
+				//Circle c = new Circle(px,py,1);					// make and style circle
+				//c.setStrokeType(StrokeType.OUTSIDE);
+				//c.setStrokeWidth(2);
+				//c.setFill(Color.BLACK);
+				//c.setStroke(Color.rgb((int) colorP[0], (int) colorP[1], (int) colorP[2]));
+				Circle c = new Circle(px,py,12);
+				c.setFill(Color.rgb((int) colorP[0], (int) colorP[1], (int) colorP[2]));
+				c.setStrokeWidth(1);
+				c.setStroke(Color.WHITE);
 				subjectCircles.add(c);
 				Line l = new Line(px,py,afaX,afaY);				// make and style line
 				l.setStrokeWidth(1);
-				l.setStroke(Color.WHITE);
+				//l.setStroke(Color.WHITE);
+				l.setStroke(Color.BLACK);
 				subjectLines.add(l);
 			}
 		}
 			
 		dataCanvas.getChildren().addAll(subjectLines);
-		dataCanvas.getChildren().addAll(subjectCircles);
 		dataCanvas.getChildren().add(circleAFA);
+		dataCanvas.getChildren().addAll(subjectCircles);
+
 	}
 	
 	@Override
@@ -104,7 +115,8 @@ public class spatializer2dTriangular extends spatializer {
 				double py = p.y()*scaleTriangle+heightTriangle*2/3;
 				//double py = p.y()*heightTriangle+heightTriangle*2/3;
 				Text t = new Text();
-				t.setFill(baseColor);
+				//t.setFill(baseColor);
+				t.setFill(Color.BLACK);
 				t.setStyle("-fx-font: 8 Lato;");
 				t.setText(String.valueOf(k+1));
 				t.setX(px); 
@@ -166,12 +178,16 @@ public class spatializer2dTriangular extends spatializer {
 		Line l1 = new Line(scaleTriangle/2, heightTriangle, scaleTriangle/2,heightTriangle/3*2);
 		Line l2 = new Line(scaleTriangle/4, heightTriangle/2,scaleTriangle/2,heightTriangle/3*2);
 		Line l3 = new Line(scaleTriangle/4*3, heightTriangle/2, scaleTriangle/2,heightTriangle/3*2);
-		l1.setStrokeWidth(1);
-		l2.setStrokeWidth(1);
-		l3.setStrokeWidth(1);
-		l1.setStroke(Color.rgb(255,255,255,0.1));
+		l1.setStrokeWidth(0.5);
+		l2.setStrokeWidth(0.5);
+		l3.setStrokeWidth(0.5);
+		/*l1.setStroke(Color.rgb(255,255,255,0.1));
 		l2.setStroke(Color.rgb(255,255,255,0.1));
-		l3.setStroke(Color.rgb(255,255,255,0.1));
+		l3.setStroke(Color.rgb(255,255,255,0.1));*/
+
+		l1.setStroke(Color.BLACK);
+		l2.setStroke(Color.BLACK);
+		l3.setStroke(Color.BLACK);
 		dataCanvas.getChildren().addAll(l1,l2,l3);
 	}
 	
@@ -186,8 +202,12 @@ public class spatializer2dTriangular extends spatializer {
 		c.setStrokeType(StrokeType.OUTSIDE);
 		c.setStrokeWidth(1);
 		//c.setFill(Color.BLACK);
-		c.setFill(Color.rgb(255,255,255, 0.1));
-		c.setStroke(Color.rgb(255,255,255, 0.2));
+		//c.setFill(Color.rgb(255,255,255, 0.1));
+		//c.setStroke(Color.rgb(255,255,255, 0.2));
+		c.setStroke(Color.BLACK);
+		c.getStrokeDashArray().addAll(4.0, 4.0);
+		c.setFill(null);
+
 		dataCanvas.getChildren().add(c);
 	}
 	
@@ -207,12 +227,13 @@ public class spatializer2dTriangular extends spatializer {
 							double py = p.y()*scaleTriangle+heightTriangle*2/3;
 							double[] colorP = getColor(p);					// get color for current subject
 							
-							Circle c = new Circle(px,py,1);					// make and style circle
-							c.setStrokeType(StrokeType.OUTSIDE);
+							Circle c = new Circle(px,py,3);					// make and style circle
+							/*c.setStrokeType(StrokeType.OUTSIDE);
 							c.setStrokeWidth(2);
 							//c.setFill(Color.BLACK);
 							c.setFill(Color.rgb(0,0,0, 0.25));
-							c.setStroke(Color.rgb((int) colorP[0], (int) colorP[1], (int) colorP[2], 0.25));
+							c.setStroke(Color.rgb((int) colorP[0], (int) colorP[1], (int) colorP[2], 0.25));*/
+							c.setFill(Color.rgb((int) colorP[0], (int) colorP[1], (int) colorP[2], 0.8));
 							subjectCircles.add(c);
 						}
 					}
@@ -226,7 +247,7 @@ public class spatializer2dTriangular extends spatializer {
 				//double afaY = cp.y()*heightTriangle+heightTriangle*2/3;
 				double afaY = cp.y()*scaleTriangle+heightTriangle*2/3;
 				double[] colorAFA = getColor(cp);
-				Circle circleAFA = new Circle(afaX,afaY,7);			// make, style and position Circle for AFA
+				Circle circleAFA = new Circle(afaX,afaY,14);			// make, style and position Circle for AFA
 				circleAFA.setStrokeWidth(1);
 				circleAFA.setFill(Color.rgb((int) colorAFA[0], (int) colorAFA[1], (int) colorAFA[2]));
 				circleAFA.setStroke(Color.WHITE);

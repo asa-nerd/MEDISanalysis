@@ -654,6 +654,7 @@ public class timeline {
 		});
 		cm4.setOnAction(e ->{ 	
 			if (_tm.hasSection == true) {
+				//timelineSection s;
 				markerList.forEach( (m) -> { 						// unselect other sections
 					ContextMenu c = m.l.getContextMenu();
 					CheckMenuItem mi = (CheckMenuItem) c.getItems().get(3);
@@ -670,14 +671,17 @@ public class timeline {
 				});
 				
 				if (((CheckMenuItem)e.getSource()).isSelected()){
+					System.out.println("fail 1");
 					_tm.showSectionInSpatial = true;
 					//_tm.r.setFill(_tm.hightlightColor);
 					//_tm.markerLine.setStroke(_tm.hightlightColor);
 					timelineSection s = _tm.getSection();
 					s.background.setFill(s.markerHightlightColor);
 					s.grip.setFill(s.gripHightlightColor);
-					GUI.visSpat.clearSpatial();
-					GUI.visSpat.drawSection((int) _tm.section.getStartTimeCode(), (int) _tm.section.getEndTimeCode(), filterListSubjects); 
+					//GUI.visSpat.clearSpatial();
+					GUI.visSpat.drawSection((int) _tm.section.getStartTimeCode(), (int) _tm.section.getEndTimeCode(), filterListSubjects);
+
+					//GUI.visSpat.drawSection((int) section.getStartTimeCode(), (int) (section.getEndTimeCode()), filterListSubjects);
 					//System.out.println((int) _tm.section.getStartTimeCode()+","+(int) _tm.section.getEndTimeCode());
 				}else {
 					_tm.showSectionInSpatial = false;
