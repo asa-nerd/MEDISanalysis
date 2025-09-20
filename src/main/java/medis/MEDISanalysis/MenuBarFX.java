@@ -329,12 +329,13 @@ public class MenuBarFX extends MenuBar {
                     if (firstDataModel.equals("Bookmarks") && firstDataDimensions == 1) {
                         GUI.visSpat.makeFilterListSubjects();
                         if (!GUI.visSpat.spatializerLoaded) {
-                            //GUI.visSpat.makeSpatializerElement(GUI.s, "BOOKMARKS");
-                            GUI.visSpat.makeSpatializerElement(GUI.s, "1DCARTESIAN");
+                            GUI.visSpat.makeSpatializerElement(GUI.s, "1DBOOKMARKS");
+                            //GUI.visSpat.makeSpatializerElement(GUI.s, "1DCARTESIAN");
                         }
-                        //GUI.visSpat.activateButtons("BOOKMARKS");
+
                         GUI.mainNavipanel.activateButtons(firstDataModel, firstDataDimensions);
                         t0.setDisable(false);
+
                     }
                     if (firstDataModel.equals("Cartesian") && firstDataDimensions == 1) {
                         GUI.visSpat.makeFilterListSubjects();

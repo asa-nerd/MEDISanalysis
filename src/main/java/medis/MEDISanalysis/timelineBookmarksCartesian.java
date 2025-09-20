@@ -105,8 +105,7 @@ public class timelineBookmarksCartesian extends timeline{
 					circle.setOpacity(1);
 				 	else circle.setOpacity(0.2);
 				dots.add(circle);
-				
-				
+
 				Line line = new Line(i*stepSize+0.5, originY, i*stepSize+0.5, originY-lHeight);
 				line.getProperties().put("timeCode", i);
 				line.getProperties().put("color", baseColor);
@@ -128,10 +127,6 @@ public class timelineBookmarksCartesian extends timeline{
 		baseLine.setEndY(originY);
 		baseLine.setStroke(Color.WHITE);
 		baseLine.setStrokeWidth(1.0);
-
-
-
-
 		dataLayer.getChildren().addAll(lines);									// add all line Nodes to parent Pane
 		dataLayer.getChildren().addAll(dots);									// add all circle Nodes to parent Pane
 		dataLayer.setPrefWidth(rangeLength*zoomFactor*2);

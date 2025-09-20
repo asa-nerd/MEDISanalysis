@@ -13,7 +13,6 @@ public class timelineBookmarks extends timeline{
 	ArrayList<Point> points;
 	ArrayList<Rectangle> rectangles;
 	ArrayList<Bookmark> allBookmarks;
-	ArrayList<Double> linieLengths;
 	double originY =  120;
 	int rangeLength;
 	Line baseLine;
@@ -32,7 +31,7 @@ public class timelineBookmarks extends timeline{
 		baseLine = new Line();
         drawScale(0, s.getShortestDataset());
         drawTimeline(0, s.getShortestDataset());
-		updateBaseline(originY);
+
 		rangeLength = s.getShortestDataset() - 0;
 	}
 	
@@ -70,7 +69,7 @@ public class timelineBookmarks extends timeline{
 				c.setOpacity(1);
 			}
 		}else{
-			originY =  230;
+			originY =  235;
 			updateBaseline(originY);
 			dataLayer.getChildren().removeAll(dots);
             dataLayer.getChildren().removeAll(rectangles);
@@ -168,28 +167,13 @@ public class timelineBookmarks extends timeline{
 					circle.getProperties().put("color", baseColor);
 					circle.setStrokeWidth(0);
 					circle.setOpacity(1);
-					/*if (i > s.getDataOffsetBegin() && i < s.getDataOffsetEnd())
-						circle.setOpacity(1);
-					else circle.setOpacity(0.2);*/
 					dots.add(circle);
 				}
 			}
 		}
-
-
-		makeRolloversDots(dots, hightlightColor);								// add rollover and clickability
-		/*baseLine.setStartX(0);													// make a baseline at the origin (the center) of the timeline
-		baseLine.setStartY(originY);
-		baseLine.setEndX(rangeLength * zoomFactor * 2);
-		baseLine.setEndY(originY);
-		baseLine.setStroke(Color.WHITE);
-		baseLine.setStrokeWidth(1.0);
-		dataLayer.getChildren().addAll(baseLine);*/
-
-		//dataLayer.getChildren().addAll(lines);								// add all line Nodes to parent Pane
-		dataLayer.getChildren().addAll(dots);									// add all circle Nodes to parent Pane
-
+		makeRolloversDots(dots, hightlightColor);
+		updateBaseline(originY);
+		dataLayer.getChildren().addAll(dots);
 		dataLayer.setPrefWidth(rangeLength*zoomFactor*2);
-		
 	}		
 }
