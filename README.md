@@ -12,8 +12,16 @@ JavaFX (which is part of the JDK if Liberica is used): https://openjfx.io
 json-simple: https://github.com/fangyidong/json-simple
 javaGeom: https://sourceforge.net/projects/geom-java/files/
 
+
+### Features
+
 ![MEDIS-Playback-5x.gif](Documentation/MEDIS-Playback-5x.gif)
 Playback of video alongside visualizations of time series data.
 
 ![MEDIS-Sections-1x.gif](Documentation/MEDIS-Sections-1x.gif)
 Defining sections of the time series for calculations and visualizations.
+
+
+Examples for visualizations made with MEDIS from the book "The Apparatus is Present – Zur Verbindung von Experiment und Konzert in der Musikforschung".
+
+![MEDIS-Figure-1.png](Documentation/MEDIS-Figure-1.png)
