@@ -22,6 +22,12 @@ Playback of video alongside visualizations of time series data.
 Defining sections of the time series for calculations and visualizations.
 
 
-Examples for visualizations made with MEDIS from the book "The Apparatus is Present – Zur Verbindung von Experiment und Konzert in der Musikforschung".
+Examples for visualizations made with the help of MEDIS 
+
+From the book [The Apparatus is Present – Zur Verbindung von Experiment und Konzert in der Musikforschung](https://www.transcript-verlag.de/978-3-8376-7837-6/the-apparatus-is-present-zur-verbindung-von-experiment-und-konzert-in-der-musikforschung/).
+
+
+![Leporello-1-front.png](Documentation/Leporello-1-front.png)
+
 
 ![MEDIS-Figure-1.png](Documentation/MEDIS-Figure-1.png)
