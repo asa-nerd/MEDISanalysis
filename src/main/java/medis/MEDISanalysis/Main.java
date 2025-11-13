@@ -37,6 +37,7 @@ public class Main extends Application{
         primaryStage.show();
     }
 
+
     public static Stage getPrimaryStage() {
         return pStage;
     }
