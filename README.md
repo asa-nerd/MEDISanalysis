@@ -4,7 +4,7 @@ Analysis application that allows for calculations and visualizations with audien
 MEDIS is a further development of the [IRMA](https://github.com/asa-nerd/IRMA/tree/master) apparatus that was first used in the GAPPP project. 
 
 
-### Dependecies:
+#### Dependecies:
 
 With version 0.9 MEDIS is developed using JavaFX and the IntelliJ IDEA. 
 Liberica JDK (17.0.4 V2) provides JavaFX integration: https://bell-sw.com/libericajdk/
@@ -13,7 +13,7 @@ json-simple: https://github.com/fangyidong/json-simple
 javaGeom: https://sourceforge.net/projects/geom-java/files/
 
 
-### Features
+#### Features
 
 ![MEDIS-Playback-5x.gif](Documentation/MEDIS-Playback-5x.gif)
 Playback of video alongside visualizations of time series data.
@@ -22,7 +22,7 @@ Playback of video alongside visualizations of time series data.
 Defining sections of the time series for calculations and visualizations.
 
 
-Examples for visualizations made with the help of MEDIS 
+#### Examples for visualizations made with the help of MEDIS 
 
 From the book [The Apparatus is Present – Zur Verbindung von Experiment und Konzert in der Musikforschung](https://www.transcript-verlag.de/978-3-8376-7837-6/the-apparatus-is-present-zur-verbindung-von-experiment-und-konzert-in-der-musikforschung/).
 
