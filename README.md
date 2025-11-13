@@ -11,3 +11,8 @@ Liberica JDK (17.0.4 V2) provides JavaFX integration: https://bell-sw.com/liberi
 JavaFX (which is part of the JDK if Liberica is used): https://openjfx.io
 json-simple: https://github.com/fangyidong/json-simple
 javaGeom: https://sourceforge.net/projects/geom-java/files/
+
+
+
+![MEDIS-Sections-1x.gif](Documentation/MEDIS-Sections-1x.gif)
+Defining sections of the time series for calculations and visualizations.
