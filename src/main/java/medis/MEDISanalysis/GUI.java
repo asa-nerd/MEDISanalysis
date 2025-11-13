@@ -38,8 +38,6 @@ public class GUI {
 	static VBox topMiddleContainer;
 	GridPane topRightContainer;
 	
-	//Region filler;
-	
 	static Timer globalTimer;
 	static long timerCounter;
 	static boolean timerPaused = false;

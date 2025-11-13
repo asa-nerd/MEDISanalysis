@@ -1,7 +1,7 @@
 //  ------------------------------------------------------------
 //
 //  MEDISanalysis V 0.95
-//  Andreas Pirchner, 2020-2024
+//  Andreas Pirchner, 2022-2025
 //
 //  ------------------------------------------------------------
 
@@ -30,7 +30,6 @@ public class Main extends Application{
         GUI gui = new GUI(primaryStage, sample);
         VBox root = gui.getLayout();
         Scene scene = new Scene(root, 1400, 900);
-        //scene.getStylesheets().add("/Ressources/stylesheet.css");
         scene.getStylesheets().add("stylesheet.css");
         primaryStage.setScene(scene);
         pStage = primaryStage;
